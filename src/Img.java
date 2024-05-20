@@ -12,6 +12,7 @@ public class Img extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
     }
 
     @Override
