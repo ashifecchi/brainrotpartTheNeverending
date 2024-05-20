@@ -11,6 +11,9 @@ public class Character {
     public BufferedImage getSprite(int x) {
         return sprites.get(x);
     }
+    public BufferedImage getidleSprites(){
+        
+    }
 
     public ArrayList<BufferedImage> getSprites() {
         return sprites;
