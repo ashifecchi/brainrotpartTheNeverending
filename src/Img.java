@@ -18,7 +18,7 @@ public class Img extends JPanel implements ActionListener {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         ArrayList<BufferedImage> nene = new ArrayList<>();
-        Character nnkn = new Character("nene",initChar("src/nenesprites", nene),10,10);
+        Character nnkn = new Character("nene",initChar("src/neneDown", nene),10,10);
     }
 
     @Override
