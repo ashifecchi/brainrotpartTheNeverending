@@ -48,6 +48,14 @@ public class Character implements ActionListener {
         return name;
     }
 
+    public int getY() {
+        return y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
     public int getTime() {
         return time;
     }

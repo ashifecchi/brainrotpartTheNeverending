@@ -10,22 +10,42 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Img extends JPanel implements ActionListener {
+    private PlayableCharacter nnkn;
     public Img() throws IOException {
         super();
+        ArrayList<BufferedImage> nene = new ArrayList<>();
+        nnkn = new PlayableCharacter("nene",readImg("src/AnimFrame/Nene/neneDown", nene));
+        nnkn.setRunl(readImg("src/AnimFrame/Nene/neneLeft"));
+        nnkn.setRunl(readImg("src/AnimFrame/Nene/neneRight"));
+        nnkn.setRunu(readImg("src/AnimFrame/Nene/neneUp"));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        ArrayList<BufferedImage> nene = new ArrayList<>();
-        Character nnkn = new Character("nene",initChar("src/neneDown", nene),10,10);
+        g.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
+        repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
-    private ArrayList<BufferedImage> initChar(String file, ArrayList<BufferedImage> puthere) {
+    private ArrayList<BufferedImage> readImg(String file, ArrayList<BufferedImage> puthere) {
+        try {
+            File myFile = new File(file);
+            Scanner fileScanner = new Scanner(myFile);
+            while (fileScanner.hasNext()) {
+                BufferedImage data = loadImg(fileScanner.nextLine());
+                puthere.add(data);
+            }
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
+        return puthere;
+    }
+    private ArrayList<BufferedImage> readImg(String file) {
+        ArrayList<BufferedImage> puthere = new ArrayList<>();
         try {
             File myFile = new File(file);
             Scanner fileScanner = new Scanner(myFile);
