@@ -17,6 +17,7 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     public PlayableCharacter(String name, ArrayList<BufferedImage> down) {
         super(name, down,475,375);
         rund = down;
+        currentSprite = rund.get(0);
     }
 
     public BufferedImage getSprite() {
