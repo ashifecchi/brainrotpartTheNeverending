@@ -54,7 +54,12 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     public BufferedImage getRunLeftSprite(){
         return runl.get(getTime() % runl.size());
     }
-
+    public boolean inBounds(Setting bg){
+        if (bg.touches(getBox())){
+            return false;
+        }
+        return true;
+    }
     @Override
     public void keyTyped(KeyEvent e) {
     }

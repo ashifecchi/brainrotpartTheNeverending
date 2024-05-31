@@ -14,6 +14,7 @@ public class Character implements ActionListener {
     private int x;
     private int y;
     private Rectangle box;
+    private int MOVEMENT_SPEED;
     public Character(String name, ArrayList<BufferedImage> idle, int x, int y){
         this.name = name;
         this.idle = idle;
@@ -22,6 +23,7 @@ public class Character implements ActionListener {
         box = new Rectangle(x+idle.get(1).getWidth(), y + idle.get(1).getHeight());
         timer = new Timer(500,this);
         timer.start();
+        MOVEMENT_SPEED = 1;
     }
 
     public boolean collision(Character other) {
@@ -59,17 +61,22 @@ public class Character implements ActionListener {
     public int getTime() {
         return time;
     }
+
+    public void setMOVEMENT_SPEED(int MOVEMENT_SPEED) {
+        this.MOVEMENT_SPEED = MOVEMENT_SPEED;
+    }
+
     public void moveUp(){
-        y--;
+        y-=MOVEMENT_SPEED;
     }
     public void moveDown(){
-        y++;
+        y+=MOVEMENT_SPEED;
     }
     public void moveRight(){
-        x++;
+        x+=MOVEMENT_SPEED;
     }
     public void moveLeft(){
-        x--;
+        x-=MOVEMENT_SPEED;
     }
     @Override
     public void actionPerformed(ActionEvent e) {

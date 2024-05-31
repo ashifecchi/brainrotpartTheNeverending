@@ -14,6 +14,7 @@ public class Img extends JPanel implements ActionListener {
     private PlayableCharacter nnkn;
     private BufferedImage bg;
     private Timer t;
+    private Locations areas = new Locations(new Setting("btech",loadImg("src/pictures/bthslol.png")));
     public Img() throws IOException {
         super();
         ArrayList<BufferedImage> nene = new ArrayList<>();
@@ -24,6 +25,7 @@ public class Img extends JPanel implements ActionListener {
         nnkn.setRunl(readImg("src/AnimFrame/Nene/neneLeft"));
         nnkn.setRunr(readImg("src/AnimFrame/Nene/neneRight"));
         nnkn.setRunu(readImg("src/AnimFrame/Nene/neneUp"));
+        nnkn.setMOVEMENT_SPEED(5);
         //bg
         bg = loadImg("src/pictures/miku.png");
         setFocusable(true);
@@ -39,7 +41,7 @@ public class Img extends JPanel implements ActionListener {
         AffineTransform at = new AffineTransform();
         at.scale(1.5, 1.5);
         g2.transform(at);
-        g2.drawImage(bg,0,0,null);
+        g2.drawImage(Locations.getCurrentSetting().getBg(),0,0,null);
         g2.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
     }
 
