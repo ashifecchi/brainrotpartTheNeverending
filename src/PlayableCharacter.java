@@ -1,3 +1,6 @@
+import org.w3c.dom.css.Rect;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,14 +15,18 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     private ArrayList<BufferedImage> rund;
     private ArrayList<BufferedImage> runu;
     private ArrayList<BufferedImage> atk;
+    private ArrayList<Rectangle> Bounds;
     private Timer timer;
+
     private BufferedImage currentSprite;
     public PlayableCharacter(String name, ArrayList<BufferedImage> down) {
-        super(name, down,475,375);
+        super(name, down,300,200);
         rund = down;
         currentSprite = rund.get(0);
     }
-
+    private void addBounds(Rectangle rec){
+        Bounds.add(rec);
+    }
     public BufferedImage getSprite() {
         return currentSprite;
     }
@@ -54,9 +61,11 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     public BufferedImage getRunLeftSprite(){
         return runl.get(getTime() % runl.size());
     }
-    public boolean inBounds(Setting bg){
-        if (bg.touches(getBox())){
-            return false;
+    public boolean inBounds(){
+        for (Rectangle r : Bounds) {
+            if (r.intersects(getBox())) {
+                return false;
+            }
         }
         return true;
     }
@@ -72,16 +81,16 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == 40){
+        if (e.getKeyCode() == 40) {
             currentSprite = getRunDownSprite();
             moveDown();
-        } else if (e.getKeyCode() == 38){
+        } else if (e.getKeyCode() == 38) {
             currentSprite = getRunUpSprite();
             moveUp();
-        } else if (e.getKeyCode() == 39){
+        } else if (e.getKeyCode() == 39) {
             currentSprite = getRunRightSprite();
             moveRight();
-        } else if (e.getKeyCode() == 37){
+        } else if (e.getKeyCode() == 37) {
             currentSprite = getRunLeftSprite();
             moveLeft();
         }

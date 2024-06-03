@@ -14,7 +14,7 @@ public class Img extends JPanel implements ActionListener {
     private PlayableCharacter nnkn;
     private BufferedImage bg;
     private Timer t;
-    private Locations areas = new Locations(new Setting("btech",loadImg("src/pictures/bthslol.png")));
+    private Locations areas = new Locations(new Setting("hometown",loadImg("src/pictures/village.png")));
     public Img() throws IOException {
         super();
         ArrayList<BufferedImage> nene = new ArrayList<>();
@@ -41,7 +41,7 @@ public class Img extends JPanel implements ActionListener {
         AffineTransform at = new AffineTransform();
         at.scale(1.5, 1.5);
         g2.transform(at);
-        g2.drawImage(Locations.getCurrentSetting().getBg(),0,0,null);
+        g2.drawImage(Locations.getCurrentSetting().getBg(),-150,-250,null);
         g2.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
     }
 
