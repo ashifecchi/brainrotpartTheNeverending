@@ -27,7 +27,11 @@ public class Img extends JPanel implements ActionListener {
         nnkn.setRunu(readImg("src/AnimFrame/Nene/neneUp"));
         nnkn.setMOVEMENT_SPEED(5);
         //bg
-        bg = loadImg("src/pictures/miku.png");
+        bg = loadImg("src/pictures/village.png");
+        //fix the image. i have it at home and accidentally set it to the wrong village skull emoji
+        Setting villag = new Setting("Village",bg);
+        villag.addCollision(new Rectangle(10,10));
+        Locations background = new Locations(villag);
         setFocusable(true);
         requestFocusInWindow();
         t = new Timer(0,this);
@@ -41,7 +45,8 @@ public class Img extends JPanel implements ActionListener {
         AffineTransform at = new AffineTransform();
         at.scale(1.5, 1.5);
         g2.transform(at);
-        g2.drawImage(Locations.getCurrentSetting().getBg(),-150,-250,null);
+        g2.drawImage(Locations.getCurrentSetting().getBg(),-50,-150,null);
+        //-150, -250
         g2.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
     }
 

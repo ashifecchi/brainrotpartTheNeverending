@@ -1,7 +1,4 @@
-import org.w3c.dom.css.Rect;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -62,12 +59,12 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
         return runl.get(getTime() % runl.size());
     }
     public boolean inBounds(){
-        for (Rectangle r : Bounds) {
+        for (Rectangle r : Locations.getCurrentSettingBounds()) {
             if (r.intersects(getBox())) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
     @Override
     public void keyTyped(KeyEvent e) {
@@ -84,15 +81,27 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
         if (e.getKeyCode() == 40) {
             currentSprite = getRunDownSprite();
             moveDown();
+            if (inBounds()){
+                moveUp();
+            }
         } else if (e.getKeyCode() == 38) {
             currentSprite = getRunUpSprite();
             moveUp();
+            if (inBounds()){
+                moveDown();
+            }
         } else if (e.getKeyCode() == 39) {
             currentSprite = getRunRightSprite();
             moveRight();
+            if (inBounds()){
+                moveLeft();
+            }
         } else if (e.getKeyCode() == 37) {
             currentSprite = getRunLeftSprite();
             moveLeft();
+            if (inBounds()){
+                moveRight();
+            }
         }
     }
 

@@ -23,10 +23,15 @@ public class Setting {
         }
         return false;
     }
-    private void addCollision(Rectangle x, int at){
+
+    public ArrayList<Rectangle> getCollision() {
+        return collision;
+    }
+
+    public void addCollision(Rectangle x){
         collision.add(x);
     }
-    private void addCollisions(ArrayList<Rectangle> x, int at) {
+    public void addCollisions(ArrayList<Rectangle> x) {
         collision.addAll(x);
     }
 }
