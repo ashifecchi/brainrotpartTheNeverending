@@ -45,7 +45,7 @@ public class Img extends JPanel implements ActionListener {
         AffineTransform at = new AffineTransform();
         at.scale(1.5, 1.5);
         g2.transform(at);
-        g2.drawImage(Locations.getCurrentSetting().getBg(),-50,-150,null);
+        g2.drawImage(Locations.getCurrentSetting().getBg(),-150, -250,null);
         //-150, -250
         g2.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
     }
