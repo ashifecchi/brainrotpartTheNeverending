@@ -25,12 +25,12 @@ public class Img extends JPanel implements ActionListener {
         nnkn.setRunl(readImg("src/AnimFrame/Nene/neneLeft"));
         nnkn.setRunr(readImg("src/AnimFrame/Nene/neneRight"));
         nnkn.setRunu(readImg("src/AnimFrame/Nene/neneUp"));
-        nnkn.setMOVEMENT_SPEED(5);
+        nnkn.setMOVEMENT_SPEED(3);
         //bg
         bg = loadImg("src/pictures/village.png");
         //fix the image. i have it at home and accidentally set it to the wrong village skull emoji
         Setting villag = new Setting("Village",bg);
-        villag.addCollision(new Rectangle(10,10));
+        villag.addCollision(new Rectangle(10,10,40,50));
         Locations background = new Locations(villag);
         setFocusable(true);
         requestFocusInWindow();
@@ -46,7 +46,8 @@ public class Img extends JPanel implements ActionListener {
         at.scale(1.5, 1.5);
         g2.transform(at);
         g2.drawImage(Locations.getCurrentSetting().getBg(),-150, -250,null);
-        //-150, -250
+        g2.draw(Locations.getCurrentSettingBounds().get(0));
+        g2.draw(nnkn.getBox());
         g2.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
     }
 

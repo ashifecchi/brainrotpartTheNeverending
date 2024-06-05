@@ -82,6 +82,7 @@ public class Character implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer){
             time++;
+            box = new Rectangle(x,y,idle.get(0).getWidth(), idle.get(0).getHeight());
         }
     }
 }
