@@ -16,12 +16,13 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     private ArrayList<BufferedImage> atk;
     private ArrayList<Rectangle> Bounds;
     private Timer timer;
-
+    private String currentDir;
     private BufferedImage currentSprite;
     public PlayableCharacter(String name, ArrayList<BufferedImage> down) {
         super(name, down,300,200);
         rund = down;
         currentSprite = rund.get(0);
+        currentDir = "down";
     }
     private void addBounds(Rectangle rec){
         Bounds.add(rec);
@@ -87,30 +88,57 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
       38 -- Up
       39 -- Right
       40 -- Down
+
+      88 -- X
       personal notes
      */
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == 88){
+            Rectangle newbox;
+            if (currentDir.equals("down")){
+                newbox = new Rectangle(getX(),getY()+getMOVEMENT_SPEED(),(int)getBox().getWidth(),(int)getBox().getHeight());
+            } else if (currentDir.equals("up")){
+                newbox = new Rectangle(getX(),getY()-getMOVEMENT_SPEED(),(int)getBox().getWidth(),(int)getBox().getHeight());
+            } else if (currentDir.equals("left")) {
+                newbox = new Rectangle(getX()-getMOVEMENT_SPEED(),getY(),(int)getBox().getWidth(),(int)getBox().getHeight());
+            } else if (currentDir.equals("right")) {
+                newbox = new Rectangle(getX()+getMOVEMENT_SPEED(),getY(),(int)getBox().getWidth(),(int)getBox().getHeight());
+            } else {
+                newbox = getBox();
+            }
+            for (InteractableObject r: Locations.getCurrentSetting().getObj()){
+                if (r.intersects(newbox)){
+                    if (r.getName().equals("door")){
+
+                    }
+                }
+            }
+        }
         if (e.getKeyCode() == 40) {
             currentSprite = getRunDownSprite();
             if (!willBeInBounds("down")){
                 moveDown();
+                currentDir = "down";
             }
         } else if (e.getKeyCode() == 38) {
             currentSprite = getRunUpSprite();
             if (!willBeInBounds("up")){
                 moveUp();
+                currentDir = "up";
             }
         } else if (e.getKeyCode() == 39) {
             currentSprite = getRunRightSprite();
             if (!willBeInBounds("right")){
                 moveRight();
+                currentDir = "right";
             }
         } else if (e.getKeyCode() == 37) {
             currentSprite = getRunLeftSprite();
             if (!willBeInBounds("left")){
                 moveLeft();
+                currentDir = "left";
             }
         }
     }

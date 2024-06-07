@@ -30,7 +30,8 @@ public class Img extends JPanel implements ActionListener {
         bg = loadImg("src/pictures/village.png");
         //fix the image. i have it at home and accidentally set it to the wrong village skull emoji
         Setting villag = new Setting("Village",bg);
-        villag.addCollision(new Rectangle(210,60,150,75));
+        villag.addCollision(new Rectangle(210,10,150,125));
+        villag.addCollision(new Rectangle(420,10,110,130));
         Locations background = new Locations(villag);
         setFocusable(true);
         requestFocusInWindow();
@@ -47,6 +48,7 @@ public class Img extends JPanel implements ActionListener {
         g2.transform(at);
         g2.drawImage(Locations.getCurrentSetting().getBg(),-150, -250,null);
         g2.draw(Locations.getCurrentSettingBounds().get(0));
+        g2.draw(Locations.getCurrentSettingBounds().get(1));
         g2.draw(nnkn.getBox());
         g2.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
     }
@@ -83,6 +85,9 @@ public class Img extends JPanel implements ActionListener {
             System.out.println(exception.getMessage());
         }
         return puthere;
+    }
+    public void room(){
+       // bg = loadImg("I FORGOT TO IMPORT THE ROOM IMG.");
     }
     public static BufferedImage loadImg(String path) throws IOException {
         return ImageIO.read(new File(path));

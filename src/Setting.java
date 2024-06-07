@@ -1,5 +1,8 @@
+import org.w3c.dom.css.Rect;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Setting {
@@ -33,5 +36,14 @@ public class Setting {
     }
     public void addCollisions(ArrayList<Rectangle> x) {
         collision.addAll(x);
+    }
+    public ArrayList<InteractableObject> getObj(){
+        ArrayList<InteractableObject> newr = new ArrayList<>();
+        for (Rectangle c : collision){
+            if (c instanceof InteractableObject){
+                newr.add((InteractableObject) c);
+            }
+        }
+        return newr;
     }
 }
