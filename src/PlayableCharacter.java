@@ -1,3 +1,5 @@
+import org.w3c.dom.css.Rect;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -58,9 +60,21 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     public BufferedImage getRunLeftSprite(){
         return runl.get(getTime() % runl.size());
     }
-    public boolean inBounds(){
+    public boolean willBeInBounds(String dir){
+        Rectangle newbox;
+        if (dir.equals("down")){
+             newbox = new Rectangle(getX(),getY()+getMOVEMENT_SPEED(),(int)getBox().getWidth(),(int)getBox().getHeight());
+        } else if (dir.equals("up")){
+             newbox = new Rectangle(getX(),getY()-getMOVEMENT_SPEED(),(int)getBox().getWidth(),(int)getBox().getHeight());
+        } else if (dir.equals("left")) {
+             newbox = new Rectangle(getX()-getMOVEMENT_SPEED(),getY(),(int)getBox().getWidth(),(int)getBox().getHeight());
+        } else if (dir.equals("right")) {
+             newbox = new Rectangle(getX()+getMOVEMENT_SPEED(),getY(),(int)getBox().getWidth(),(int)getBox().getHeight());
+        } else {
+            newbox = getBox();
+        }
         for (Rectangle r : Locations.getCurrentSettingBounds()) {
-            if (r.intersects(getBox())) {
+            if (r.intersects(newbox)){
                 return true;
             }
         }
@@ -80,27 +94,23 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 40) {
             currentSprite = getRunDownSprite();
-            moveDown();
-            if (inBounds()){
-                moveUp();
+            if (!willBeInBounds("down")){
+                moveDown();
             }
         } else if (e.getKeyCode() == 38) {
             currentSprite = getRunUpSprite();
-            moveUp();
-            if (inBounds()){
-                moveDown();
+            if (!willBeInBounds("up")){
+                moveUp();
             }
         } else if (e.getKeyCode() == 39) {
             currentSprite = getRunRightSprite();
-            moveRight();
-            if (inBounds()){
-                moveLeft();
+            if (!willBeInBounds("right")){
+                moveRight();
             }
         } else if (e.getKeyCode() == 37) {
             currentSprite = getRunLeftSprite();
-            moveLeft();
-            if (inBounds()){
-                moveRight();
+            if (!willBeInBounds("left")){
+                moveLeft();
             }
         }
     }

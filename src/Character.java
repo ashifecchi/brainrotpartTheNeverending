@@ -64,6 +64,10 @@ public class Character implements ActionListener {
         return time;
     }
 
+    public int getMOVEMENT_SPEED() {
+        return MOVEMENT_SPEED;
+    }
+
     public void setMOVEMENT_SPEED(int MOVEMENT_SPEED) {
         this.MOVEMENT_SPEED = MOVEMENT_SPEED;
     }
