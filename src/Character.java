@@ -11,6 +11,7 @@ public class Character implements ActionListener {
     private ArrayList<BufferedImage> idle;
     private int time;
     private Timer timer;
+    private Timer boxtimer = new Timer(0,this);
     private int x;
     private int y;
     private Rectangle box;
@@ -22,6 +23,7 @@ public class Character implements ActionListener {
         this.y = y;
         box = new Rectangle(x+idle.get(1).getWidth(), y + idle.get(1).getHeight());
         timer = new Timer(500,this);
+        boxtimer.start();
         timer.start();
         MOVEMENT_SPEED = 1;
     }
@@ -80,9 +82,12 @@ public class Character implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == timer){
-            time++;
+        if (e.getSource() == boxtimer){
             box = new Rectangle(x,y,idle.get(0).getWidth(), idle.get(0).getHeight());
+        } else {
+            if (e.getSource() == timer) {
+                time++;
+            }
         }
     }
 }
