@@ -30,7 +30,7 @@ public class Img extends JPanel implements ActionListener {
         bg = loadImg("src/pictures/village.png");
         //fix the image. i have it at home and accidentally set it to the wrong village skull emoji
         Setting villag = new Setting("Village",bg);
-        villag.addCollision(new Rectangle(10,10,40,50));
+        villag.addCollision(new Rectangle(210,60,150,75));
         Locations background = new Locations(villag);
         setFocusable(true);
         requestFocusInWindow();

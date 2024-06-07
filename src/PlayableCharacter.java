@@ -61,10 +61,10 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     public boolean inBounds(){
         for (Rectangle r : Locations.getCurrentSettingBounds()) {
             if (r.intersects(getBox())) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
     @Override
     public void keyTyped(KeyEvent e) {
