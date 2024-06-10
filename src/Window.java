@@ -6,8 +6,11 @@ import java.io.IOException;
 
 public class Window extends JFrame {
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    Button butt;
+
     private static JFrame window;
+
+    public Window() {
+    }
 
     public static void run() throws IOException {
         window = new JFrame();

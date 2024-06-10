@@ -51,6 +51,10 @@ public class Character implements ActionListener {
     public String getName() {
         return name;
     }
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
 
     public int getY() {
         return y;
