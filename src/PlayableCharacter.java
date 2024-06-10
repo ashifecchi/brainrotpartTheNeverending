@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.function.DoubleFunction;
 
 public class PlayableCharacter extends Character implements ActionListener, KeyListener {
     private ArrayList<BufferedImage> runl;
@@ -96,7 +98,7 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 88){
-            Rectangle newbox;
+            Rectangle newbox = getBox();
             if (currentDir.equals("down")){
                 newbox = new Rectangle(getX(),getY()+getMOVEMENT_SPEED(),(int)getBox().getWidth(),(int)getBox().getHeight());
             } else if (currentDir.equals("up")){
@@ -105,13 +107,14 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
                 newbox = new Rectangle(getX()-getMOVEMENT_SPEED(),getY(),(int)getBox().getWidth(),(int)getBox().getHeight());
             } else if (currentDir.equals("right")) {
                 newbox = new Rectangle(getX()+getMOVEMENT_SPEED(),getY(),(int)getBox().getWidth(),(int)getBox().getHeight());
-            } else {
-                newbox = getBox();
             }
             for (InteractableObject r: Locations.getCurrentSetting().getObj()){
                 if (r.intersects(newbox)){
                     if (r.getName().equals("door")){
-
+                        Img.room();
+                    } else if (r.getName().equals("randomhouse")) {
+                        Img.sayStuff("probably shouldn't do that.");
+                        System.out.print("yadidit");
                     }
                 }
             }

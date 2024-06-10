@@ -11,6 +11,8 @@ public class Locations {
             currentSetting = one;
         }
     }
+    public Locations(){
+    } //constructs but doesn't put anything in it. for initializing settings before putting it in the list
     public void addSetting(Setting x){
         settings.add(x);
     }
@@ -27,5 +29,9 @@ public class Locations {
     }
     public static Setting getCurrentSetting() {
         return currentSetting;
+    }
+
+    public Setting getSetting(int idx) {
+        return settings.get(idx);
     }
 }
