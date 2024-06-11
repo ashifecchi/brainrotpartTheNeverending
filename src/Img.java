@@ -48,12 +48,15 @@ public class Img extends JPanel implements ActionListener {
         //fix the image. i have it at home and accidentally set it to the wrong village skull emoji
         areas.getSetting(0).addCollision(new Rectangle(210,10,150,125));
         areas.getSetting(0).addCollision(new InteractableObject("tsukasahouse",new Rectangle(420,10,110,130)));
+        areas.getSetting(0).addCollision(new InteractableObject("tsukasahouse",new Rectangle(530,10,70,100)));
         areas.getSetting(0).addCollision(new InteractableObject("door",new Rectangle(265, 85,35,50)));
         areas.getSetting(0).addCollision(new Rectangle(-1,0,1,1000));
         areas.getSetting(0).addCollision(new Rectangle(0,-1,10000,1));
         areas.getSetting(0).addCollision(new Rectangle(657,-1,1,1000));
         areas.getSetting(0).addCollision(new InteractableObject("exit",new Rectangle(0,476,1000,1)));
         areas.getSetting(0).addCollision(new InteractableObject("randomhouse",new Rectangle(30,0,150,130)));
+        areas.getSetting(0).addCollision(new InteractableObject("randomhouse",new Rectangle(40,275,150,130)));
+        areas.getSetting(0).addCollision(new InteractableObject("randomhouse",new Rectangle(400,290,150,130)));
         areas.getSetting(1).addCollision(new Rectangle(0,0,1000,120));
         areas.getSetting(1).addCollision(new Rectangle(0,0,100,1000));
         areas.getSetting(1).addCollision(new InteractableObject("bed",new Rectangle(10,150,90,110)));
@@ -97,7 +100,7 @@ public class Img extends JPanel implements ActionListener {
                 g2.drawImage(speechbubble, 0, 320, null);
                 g2.drawString(stuff, 200, 340);
             }
-            if (randomCounter > 200){
+            if (randomCounter > 100){
                 sayingstuff = false;
             }
             randomCounter++;

@@ -157,6 +157,10 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
                         Img.sayStuff("i rest here. sometimes.");
                     } else if (name.equals("PC") || name.equals("PCchair")) {
                         Img.sayStuff("yay");
+                        int i = 0;
+                        while (i <1000){
+                            i++;
+                        }
                         Img.bootPc();
                         int x = 0;
                     } else if (name.equals("roomdoor")) {
