@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Img extends JPanel implements ActionListener {
     private static PlayableCharacter nnkn;
     private BufferedImage bg;
-    private boolean pc = false;
+    public static boolean pc = false;
     private Timer t;
     private static int randomCounter = 0;
     private static Locations areas;
@@ -84,10 +84,11 @@ public class Img extends JPanel implements ActionListener {
         }
         g2.transform(at);
         g2.drawImage(Locations.getCurrentSetting().getBg(),-150, -250,null);
-        for (int x = 0; x < Locations.getCurrentSettingBounds().size();x++){
-            g2.draw(Locations.getCurrentSettingBounds().get(x));
-        }
-        g2.draw(nnkn.getBox());
+        //below is the code for drawing boundaries for testing
+   //     for (int x = 0; x < Locations.getCurrentSettingBounds().size();x++){
+     //       g2.draw(Locations.getCurrentSettingBounds().get(x));
+       // }
+      //  g2.draw(nnkn.getBox());
         g2.drawImage(nnkn.getSprite(),nnkn.getX(),nnkn.getY(),null);
         if (sayingstuff) {
             if (Locations.getCurrentSetting() == areas.getSetting(1)){
@@ -108,6 +109,10 @@ public class Img extends JPanel implements ActionListener {
         if (Locations.getCurrentSetting() == areas.getSetting(2)){
             g2.drawImage(Locations.getCurrentSetting().getBg(),0,0,null);
         }
+    }
+
+    public static boolean getpc() {
+        return pc;
     }
 
     @Override
@@ -145,9 +150,11 @@ public class Img extends JPanel implements ActionListener {
     }
     public static void bootPc(){
         areas.changeSetting(2);
+        pc = true;
     }
     public static void closePC(){
         areas.changeSetting(1);
+        pc = false;
     }
     public static void room(){
        areas.changeSetting(1);

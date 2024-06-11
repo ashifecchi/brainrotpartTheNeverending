@@ -194,9 +194,11 @@ public class PlayableCharacter extends Character implements ActionListener, KeyL
             if (!willBeInBounds("left")){
                 moveLeft();
             }
-        } else if (e.getKeyCode() == 27){
-            Img.closePC();
-            Img.sayStuff("damn");
+        } else if (e.getKeyCode() == 27) {
+            if (Img.getpc()) {
+                Img.closePC();
+                Img.sayStuff("damn");
+            }
         }
     }
 
